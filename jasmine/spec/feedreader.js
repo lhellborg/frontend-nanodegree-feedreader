@@ -56,11 +56,29 @@ $(function() {
     /* TODO: Write a new test suite named "The menu" */
     describe('The menu', function() {
 
+        /*added function before each of the specs to test the elements to have a class*/
+        beforeEach(function () {
+            jasmine.addMatchers({
+              toHaveClass: function () {
+                return {
+                  compare: function (actual, className) {
+                    return { pass: $(actual).hasClass(className) }
+                  }
+                }
+              },
+            });
+        });
+
         /* TODO: Write a test that ensures the menu element is
          * hidden by default. You'll have to analyze the HTML and
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+
+        it('should have class "menu-hidden" by default', function() {
+          var body = $('body');
+          expect(body).toHaveClass("menu-hidden");
+        });
 
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
@@ -68,9 +86,33 @@ $(function() {
           * clicked and does it hide when clicked again.
           */
 
+        it('toggles between hidden and visible on click', function() {
+            $trigger = $('.menu-icon-link');
+            $body = $('body');
+            //click first time toggleClass
+            $trigger.trigger('click');
+            expect($body).not.toHaveClass('menu-hidden');
+            //click second time
+            $trigger.trigger('click');
+            expect($body).toHaveClass('menu-hidden');
+        });
     });
 
     /* TODO: Write a new test suite named "Initial Entries" */
+    describe('Initial Entries', function() {
+
+        /* add a funciton to test for a dom element to exist*/
+          beforeEach(function () {
+            jasmine.addMatchers({
+              toExist: function () {
+                return {
+                  compare: function (actual) {
+                    return { pass: $(actual).length }
+                  }
+                }
+              }
+          });
+        });
 
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
@@ -78,12 +120,38 @@ $(function() {
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
+         beforeEach(function(done) {
+            loadFeed(0, function() {
+                done();
+            });
+         });
 
-    /* TODO: Write a new test suite named "New Feed Selection"
+
+        it('should have at least one entry', function(done) {
+            expect($('.entry')).toExist();
+            done();
+        });
+
+    });
+
+    /* TODO: Write a new test suite named "New Feed Selection"*/
+    describe('New Feed Selection', function() {
 
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                done();
+            });
+         });
+
+
+        it('should alter the content when new feed is loaded', function() {
+
+        });
+
+    });
 
 }());
