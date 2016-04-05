@@ -155,25 +155,36 @@ $(function() {
 
 
         describe('selecting new feed', function() {
+            $trigger = $('.feed-list');
+
 
             beforeEach(function(done) {
-                loadFeed(1, function() {
-                done();
-                });
+                spyOn(window, 'loadFeed');
+                console.log(window.loadFeed.calls.allArgs())
+                console.log(window.loadFeed.calls.any())
+                function callDifferentFeed() {
+                    if (window.loadFeed.calls.any()) {
+                        done();
+                        console.log(window.loadFeed.calls.allArgs())
+                    } else {
+                        setTimeout(function() {
+                            callDifferentFeed();
+                        }, 1000);
+                    }
+                };
+
             });
 
             it('should alter the content' ,function(done) {
-
                 //click on different feed-list
-               // $trigger.trigger('click');
-                //var newEntryContent = $entry.contents();
+
                 $entry = $('.entry');
                 newEntryContent = $entry[0].innerText;
                 console.log('spec old ' + oldEntryContent);
                 console.log('spec new ' + newEntryContent);
 
-               expect(oldEntryContent).not.toEqual(newEntryContent);
-               done();
+                expect(oldEntryContent).not.toEqual(newEntryContent);
+                done();
             });
 
             afterEach(function() {
