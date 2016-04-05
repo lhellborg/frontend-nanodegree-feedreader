@@ -153,10 +153,6 @@ $(function() {
             });
          });
 
-        afterEach(function() {
-            //set new entry to old entry
-            oldEntryContent = newEntryContent;
-        });
 
         describe('selecting new feed', function() {
 
@@ -178,6 +174,11 @@ $(function() {
 
                expect(oldEntryContent).not.toEqual(newEntryContent);
                done();
+            });
+
+            afterEach(function() {
+                //set new entry to old entry
+                oldEntryContent = newEntryContent;
             });
 
         });
