@@ -136,19 +136,49 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection"*/
     describe('New Feed Selection', function() {
-
+        var oldEntryContent;
+        var newEntryContent;
+        feed = $('li a')
+        console.log(feed[0])
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
         beforeEach(function(done) {
             loadFeed(0, function() {
+                $entry = $('.entry');
+                oldEntryContent = $entry[0].innerText;
                 done();
+                return oldEntryContent;
             });
          });
 
+        afterEach(function() {
+            //set new entry to old entry
+            oldEntryContent = newEntryContent;
+        });
 
-        it('should alter the content when new feed is loaded', function() {
+        describe('selecting new feed', function() {
+
+            beforeEach(function(done) {
+                loadFeed(1, function() {
+                done();
+                });
+            });
+
+            it('should alter the content' ,function(done) {
+
+                //click on different feed-list
+               // $trigger.trigger('click');
+                //var newEntryContent = $entry.contents();
+                $entry = $('.entry');
+                newEntryContent = $entry[0].innerText;
+                console.log('spec old ' + oldEntryContent);
+                console.log('spec new ' + newEntryContent);
+
+               expect(oldEntryContent).not.toEqual(newEntryContent);
+               done();
+            });
 
         });
 
