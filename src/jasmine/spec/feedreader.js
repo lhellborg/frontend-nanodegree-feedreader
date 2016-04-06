@@ -149,7 +149,7 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(0, function() {
                 $entry = $('.entry');
-                oldEntryContent = $entry[0].innerText;
+                oldEntryContent = $entry[0].innerText; //the headline of the first entry
                 done();
             });
         });
@@ -157,13 +157,13 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(1, function() {
                 $entry = $('.entry');
-                newEntryContent = $entry[0].innerText;
+                newEntryContent = $entry[0].innerText; //the headline of the first entry
                 done();
             });
         });
 
         it('should alter the content', function(done) {
-            expect(oldEntryContent).not.toEqual(newEntryContent);
+            expect(oldEntryContent).not.toEqual(newEntryContent); //testing if the first headlines of the two different loadFeeds are different
             done();
         });
 
