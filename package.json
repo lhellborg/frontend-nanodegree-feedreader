@@ -1,0 +1,29 @@
+{
+  "name": "feedreader",
+  "version": "1.0.0",
+  "description": "testing cases",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp-clean-css": "^2.0.4",
+    "gulp-concat": "^2.6.0",
+    "gulp-jsbeautifier": "^2.0.3",
+    "gulp-jshint": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3",
+    "jshint": "^2.9.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lhellborg/frontend-nanodegree-feedreader.git"
+  },
+  "author": "Linda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lhellborg/frontend-nanodegree-feedreader/issues"
+  },
+  "homepage": "https://github.com/lhellborg/frontend-nanodegree-feedreader#readme"
+}
