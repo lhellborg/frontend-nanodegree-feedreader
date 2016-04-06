@@ -138,8 +138,6 @@ $(function() {
     describe('New Feed Selection', function() {
         var oldEntryContent;
         var newEntryContent;
-        feed = $('li a')
-        console.log(feed[0])
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
@@ -149,51 +147,21 @@ $(function() {
                 $entry = $('.entry');
                 oldEntryContent = $entry[0].innerText;
                 done();
-                return oldEntryContent;
             });
          });
 
-
-        describe('selecting new feed', function() {
-            $trigger = $('.feed-list');
-
-
-            beforeEach(function(done) {
-                spyOn(window, 'loadFeed');
-                console.log(window.loadFeed.calls.allArgs())
-                console.log(window.loadFeed.calls.any())
-                function callDifferentFeed() {
-                    if (window.loadFeed.calls.any()) {
-                        done();
-                        console.log(window.loadFeed.calls.allArgs())
-                    } else {
-                        setTimeout(function() {
-                            callDifferentFeed();
-                        }, 1000);
-                    }
-                };
-
-            });
-
-            it('should alter the content' ,function(done) {
-                //click on different feed-list
-
+        beforeEach(function(done) {
+            loadFeed(1, function() {
                 $entry = $('.entry');
                 newEntryContent = $entry[0].innerText;
-                console.log('spec old ' + oldEntryContent);
-                console.log('spec new ' + newEntryContent);
-
-                expect(oldEntryContent).not.toEqual(newEntryContent);
                 done();
             });
+        });
 
-            afterEach(function() {
-                //set new entry to old entry
-                oldEntryContent = newEntryContent;
-            });
-
+        it('should alter the content' ,function(done) {
+            expect(oldEntryContent).not.toEqual(newEntryContent);
+            done();
         });
 
     });
-
 }());
