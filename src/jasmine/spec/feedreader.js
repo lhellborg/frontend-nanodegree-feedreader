@@ -138,7 +138,7 @@ $(function() {
 
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection"*/
+    /* A new test suite named "New Feed Selection"*/
     describe('New Feed Selection', function() {
         var oldEntryContent;
         var newEntryContent;
