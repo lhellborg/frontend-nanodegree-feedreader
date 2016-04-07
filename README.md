@@ -3,7 +3,7 @@
 Writing tests to make sure all the applications in the feed reader blog is working properly.
 
 
-##How to download and build
+## How to download and build
 The files in the `dist` folder are minified and ready to use.
 
 From the `src` code

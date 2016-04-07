@@ -57,7 +57,7 @@ gulp.task('minify-css', function() {
 gulp.task('scripts', function() {
     return gulp.src(paths.scripts, {cwd: bases.src})
         .pipe(concat('all.js'))
-        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest(bases.dist + 'js/'))
         .pipe(rename('all.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(bases.dist + 'js/'));
